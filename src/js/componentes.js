@@ -5,8 +5,8 @@ import { todoList } from '../index';
  const htmlTodo  =  document.querySelector('.todo-list'); // es el que contine la lista = ul
  const htmlEnter =  document.querySelector('.new-todo'); // es el input
 
- const pendientes = document.querySelectorAll('.filtro');
- console.log( pendientes[1]);
+ const btnBorrarComletados = document.querySelector('.clear-completed');
+ console.log( btnBorrarComletados);
  
 
 
@@ -59,18 +59,16 @@ import { todoList } from '../index';
 //   si aplasto un enter
 
     htmlEnter.addEventListener( 'keyup', (algo) => {
-            
         if( algo.keyCode === 13 && htmlEnter.value.length > 0){
         
-            const agregando = new Todo(`${htmlEnter.value}`);
-            todoList.nuevoTodo( agregando );
-            console.log( todoList );
-            
-            crearTodoHtmlFer( agregando );
-            htmlEnter.value = '';
-        
+                const agregando = new Todo(`${htmlEnter.value}`);
+                todoList.nuevoTodo( agregando );
+                console.log( todoList );
+                
+                crearTodoHtmlFer( agregando );
+                htmlEnter.value = '';
         }
-    
+        
     } )
 
 
@@ -94,8 +92,23 @@ import { todoList } from '../index';
             
         }
         
+    } );
+
+    btnBorrarComletados.addEventListener( 'click', (as) => {
+        todoList.eliminarCompletados();
+
+        for (let i = htmlTodo.children.length - 1; i >= 0 ; i--) {
+            const elemento = htmlTodo.children[i];
+            console.log( elemento );
+            if ( htmlTodo.children[i].classList.contains('completed') ) {
+               
+                // htmlTodo.children[i].remove();
+                htmlTodo.removeChild(elemento)
+            }
+            
+        }
+
     } )
 
-    pendientes[1].addEventListener( 'click', () => {
-        todoList.eliminarCompletados();
-    } )
+    
+    
