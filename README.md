@@ -1,4 +1,4 @@
-# Webpack  Starter
+# todo  Starter
 
 Este es el proyecto inicial para crear aplicaciones utilizando webpack.
 
@@ -19,3 +19,19 @@ y para contruir el build, recuerden:
 npm run build
 ```
 
+### git:
+
+para listar los branch creados:
+
+```
+git branch --list
+```
+
+y para ver repositorios remotos
+```
+git remote -v
+```
+y para eliminar
+```
+git remote rm [nombre del repositorio]
+```
