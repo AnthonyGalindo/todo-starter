@@ -1,6 +1,6 @@
 import './estilos.css';
 import { Todo, TodoList } from './classes'
-import {  crearTodoHtmlFer } from './js/componentes'
+// import {  crearTodoHtmlFer } from './js/componentes'
 
 
 //seleccionando el html para el enter
