@@ -2,11 +2,19 @@ import { Todo } from "../classes/todo.class";
 import { todoList } from '../index';
 
 
- const htmlTodo  =  document.querySelector('.todo-list'); // es el que contine la lista = ul
- const htmlEnter =  document.querySelector('.new-todo'); // es el input
+const htmlTodo             =  document.querySelector('.todo-list'); // es el que contine la lista = ul
+const htmlEnter            =  document.querySelector('.new-todo'); // es el input
 
  const btnBorrarComletados = document.querySelector('.clear-completed');
- console.log( btnBorrarComletados);
+ const filtros             = document.querySelector('.filters');
+ const btnFiltros          = document.querySelectorAll('.filtro')
+ console.log( btnFiltros );
+ 
+ 
+ 
+// console.log( filtros );
+
+//  console.log( btnTodos);
  
 
 
@@ -63,10 +71,11 @@ import { todoList } from '../index';
         
                 const agregando = new Todo(`${htmlEnter.value}`);
                 todoList.nuevoTodo( agregando );
-                console.log( todoList );
+                // console.log( todoList );
                 
                 crearTodoHtmlFer( agregando );
                 htmlEnter.value = '';
+                todoList.establecerLocalStorage();
         }
         
     } )
@@ -81,9 +90,9 @@ import { todoList } from '../index';
         if( nombreElemento.includes( 'input' )){
             todoList.marcarCompletado( id );
             elementoLi.classList.toggle('completed')
-            console.log( todoList );
+            
         }
-        console.log( nombreElemento );
+        // console.log( nombreElemento );
         
         if ( nombreElemento.includes('button') ) {
             todoList.eliminarTodo(id);
@@ -94,8 +103,11 @@ import { todoList } from '../index';
         
     } );
 
-    btnBorrarComletados.addEventListener( 'click', (as) => {
+    btnBorrarComletados.addEventListener( 'click', () => {
         todoList.eliminarCompletados();
+        
+       
+        
 
         for (let i = htmlTodo.children.length - 1; i >= 0 ; i--) {
             const elemento = htmlTodo.children[i];
@@ -110,5 +122,46 @@ import { todoList } from '../index';
 
     } )
 
+    filtros.addEventListener( 'click', (ev) => {
+        console.log( ev );
+
+        const textoClick = ev.target.text;
+      
+        console.log( textoClick );
+        // console.log( htmlTodo.children );
+        
+        
+        if ( !textoClick ) { return; }
+
+        for (const elemento of htmlTodo.children) {
+            
+            elemento.classList.remove('hidden')
+            const completado = elemento.classList.contains('completed')
+           
+            switch (textoClick) {
+                case 'Pendientes':
+                        if (completado) {
+                            elemento.classList.add('hidden')
+                        }
+                    break;
+                    
+                    case 'Completados':
+                            if (!completado) {
+                                elemento.classList.add('hidden')
+                            }
+                        break;
+
+                default:
+                    break;
+            }
+
+            
+            
+        }
+        
+        
+    } )
+
+  
     
     
