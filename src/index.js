@@ -7,7 +7,7 @@ import {  crearTodoHtmlFer } from './js/componentes'
 
 export const todoList = new TodoList();
 // const enter = new Todo('Paulina');
-  console.log( todoList.todos );
+  
   // todoList.todos.forEach( element => crearTodoHtmlFer(element)  );
   todoList.todos.forEach(  crearTodoHtmlFer  );
 

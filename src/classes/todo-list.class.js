@@ -1,13 +1,17 @@
 
+import { contador} from "../js/componentes.js";
+
 export class TodoList {
 
     constructor() {
         this.cargarLocalStorage() ;
+      
     }
 
     nuevoTodo( todo ) {
         this.todos.push( todo );
         this.establecerLocalStorage();
+        this.contadorPendientes();
     }
 
     eliminarTodo( id ) {
@@ -20,6 +24,7 @@ export class TodoList {
 
         this.todos = this.todos.filter( todo => todo.id != id );
         this.establecerLocalStorage();
+        this.contadorPendientes();
     }
 
     marcarCompletado( id ) {
@@ -29,6 +34,7 @@ export class TodoList {
             if ( todo.id == id) {
                 todo.completado = !todo.completado;
                 this.establecerLocalStorage();
+                this.contadorPendientes();
                 break;
                 
             }
@@ -47,5 +53,20 @@ export class TodoList {
 
     cargarLocalStorage() {
         this.todos = ( localStorage.getItem('todo') ) ?  JSON.parse( localStorage.getItem('todo') ):  [];
+        this.contadorPendientes();
     }
+
+    contadorPendientes() {
+        let alf = 0;
+    for (const ele of this.todos) {
+        if ( !ele.completado)  {
+            
+            
+            alf ++;
+
+        }
+    }
+    contador.innerText = alf;
+    }
+
 }

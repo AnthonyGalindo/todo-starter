@@ -2,13 +2,16 @@ import { Todo } from "../classes/todo.class";
 import { todoList } from '../index';
 
 
-const htmlTodo             =  document.querySelector('.todo-list'); // es el que contine la lista = ul
-const htmlEnter            =  document.querySelector('.new-todo'); // es el input
+export const htmlTodo             =  document.querySelector('.todo-list'); // es el que contine la lista = ul
+       const htmlEnter            =  document.querySelector('.new-todo'); // es el input
+       const btnBorrarComletados  = document.querySelector('.clear-completed');
+       const filtros              = document.querySelector('.filters');
+       const btnFiltros           = document.querySelectorAll('.filtro')
 
- const btnBorrarComletados = document.querySelector('.clear-completed');
- const filtros             = document.querySelector('.filters');
- const btnFiltros          = document.querySelectorAll('.filtro')
- console.log( btnFiltros );
+export  const contador            = document.querySelector('.todo-count').firstElementChild;
+ 
+
+ 
  
  
  
@@ -111,7 +114,7 @@ const htmlEnter            =  document.querySelector('.new-todo'); // es el inpu
 
         for (let i = htmlTodo.children.length - 1; i >= 0 ; i--) {
             const elemento = htmlTodo.children[i];
-            console.log( elemento );
+          
             if ( htmlTodo.children[i].classList.contains('completed') ) {
                
                 // htmlTodo.children[i].remove();
@@ -123,11 +126,10 @@ const htmlEnter            =  document.querySelector('.new-todo'); // es el inpu
     } )
 
     filtros.addEventListener( 'click', (ev) => {
-        console.log( ev );
+       
 
         const textoClick = ev.target.text;
-      
-        console.log( textoClick );
+     
         // console.log( htmlTodo.children );
         
         
