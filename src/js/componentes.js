@@ -133,6 +133,9 @@ const htmlEnter            =  document.querySelector('.new-todo'); // es el inpu
         
         if ( !textoClick ) { return; }
 
+        btnFiltros.forEach( ele =>  ele.classList.remove('selected') );
+        ev.target.classList.add('selected')
+
         for (const elemento of htmlTodo.children) {
             
             elemento.classList.remove('hidden')
